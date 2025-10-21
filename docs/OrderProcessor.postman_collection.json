@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "e9cbd3bc-707f-4f35-912c-d5e497193631",
+		"name": "OrderProcessor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17026952"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Has valid response\", function () {\r",
+							"    var json = pm.response.json();\r",
+							"    pm.expect(pm.response.code === 201 || pm.response.code === 200 || pm.response.code === 503).to.be.true;\r",
+							"    if (pm.response.code === 503) {\r",
+							"        pm.expect(pm.response.headers.has('Retry-After')).to.be.true;\r",
+							"    } else {\r",
+							"        pm.expect(json).to.have.property(\"order_id\");\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Has valid response\", function () {\r",
+							"    var json = pm.response.json();\r",
+							"    pm.expect(pm.response.code === 201 || pm.response.code === 200 || pm.response.code === 503).to.be.true;\r",
+							"    if (pm.response.code === 503) {\r",
+							"        pm.expect(pm.response.headers.has('Retry-After')).to.be.true;\r",
+							"    } else {\r",
+							"        pm.expect(json).to.have.property(\"order_id\");\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Typ",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"items\": [\"item1\", \"item2\"],\r\n \"payment_amount\": 100.50\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/orders/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

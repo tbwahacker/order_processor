@@ -5,6 +5,8 @@ import random
 from django.db import transaction
 import threading
 import logging
+
+from order_processor.settings import ORDER_LOG_FILE
 from .models import Order
 
 logger = logging.getLogger('orders')
@@ -60,5 +62,8 @@ class OrderCreateView(APIView):
     def _log_order_async(self, order_id, result):
         def log_task():
             logger.info(f"Order attempt: ID={order_id}, Result={result}")
-
+            # Ensure the file is flushed by the logging handler
+            for handler in logger.handlers:
+                if hasattr(handler, 'flush'):
+                    handler.flush()
         threading.Thread(target=log_task).start()
