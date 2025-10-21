@@ -23,7 +23,7 @@
 - Logs at ./logs/orders.log
 
 ## Docs
-(Depends on how frontend developer will need me to deliver api docs, I provided both swagger UI and postman collection json file)
+- - (Depends on how frontend developer will need me to deliver api docs, I provided both swagger UI and postman collection json file)
 See docs/OrderProcessor.postman_collection.json
 See Swagger UI via /swagger end point (eg. http://127.0.0.1:8000/swagger/) and
 get API specification at http://127.0.0.1:8000/redoc/
