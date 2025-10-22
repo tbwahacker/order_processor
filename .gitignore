@@ -49,6 +49,7 @@ venv/*
 *.local
 
 # Docker
+.env.docker
 *.env.docker
 .dockerignore
 docker-compose*.yml

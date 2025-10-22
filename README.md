@@ -74,19 +74,10 @@ get API specification at http://127.0.0.1:8000/redoc/
 - Postman collection tests results included at `docs/OrderProcessor.postman_collection.json`.
 
 - Assessment Question No. 9
-Why is Docker the right tool for this project? 
-Could you achieve the same results using virtual environments or direct installations? 
-Please justify your answer in terms of scalability, deployment, and development efficiency.
-- - Answer:
-- - - Docker is the right tool for most modern software projects
-     due to its ability to provide consistent, portable, and scalable environments. 
-     It outperforms virtual environments and direct installations in 
-     scalability (via orchestration), deployment (via container images and registries),
-     and development efficiency (via reproducible setups). While virtual environments can
-     achieve similar results for simple, language-specific projects, 
-     they lack Docker’s robustness for complex or distributed systems. 
-     Direct installations are generally inadequate for anything beyond trivial applications 
-     due to their lack of isolation and portability. 
-     For projects requiring reliability, scalability, and efficiency, Docker is the superior choice.
+Docker is ideal for this project due to its reproducible containers,
+enabling scalability (via orchestration), streamlined deployment (single command), 
+and efficient development (isolated environments). 
+Virtual environments or direct installs lack Docker’s portability and isolation,
+making them less suitable for production-like testing and scaling.
 
 ---

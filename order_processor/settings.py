@@ -1,18 +1,15 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-load_dotenv()
-
+# load_dotenv()
+load_dotenv('.env.docker')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@gom#swy13z((kcw9xbz!of2vbscb(6g!xz1jp6&p0oo*p^&iq'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*'] # must specify the host for security reason
+# Security settings
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-@gom#swy13z((kcw9xbz!of2vbscb(6g!xz1jp6&p0oo*p^&iq')
+DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split()
 
 # Application definition
 
