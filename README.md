@@ -48,6 +48,7 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
    docker-compose exec app python manage.py makemigrations
    docker-compose exec app python manage.py migrate
    ```
+   - - `./logs/orders.log` is host-mounted so `/app/logs/orders.log` is accessible outside container.
 
 5. **Run Tests**
    Execute the test suite:
@@ -55,7 +56,23 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
    docker-compose exec app python manage.py test
    ```
 
-6. **Access the API**
+6. **Documentation**
+- Swagger UI via `drf_yasg` at `/swagger/`.
+- Postman test script (to check either success or retry):
+```bash
+    pm.test("Has valid response", function () {
+      var json = pm.response.json();
+      pm.expect(pm.response.code === 201 || pm.response.code === 200 || pm.response.code === 503).to.be.true;
+      if (pm.response.code === 503) {
+        pm.expect(pm.response.headers.has('Retry-After')).to.be.true;
+      } else {
+        pm.expect(json).to.have.property("order_id");
+      }
+     });
+```
+ - Postman collection tests results included at `docs/OrderProcessor.postman_collection.json`.
+
+7. **Access the API**
    Test the endpoint at `http://localhost:8000/orders/`:
    ```bash
    curl -X POST http://localhost:8000/orders/ -H "Content-Type: application/json" -d '{"items": ["item1", "item2"], "payment_amount": 100.50}'
