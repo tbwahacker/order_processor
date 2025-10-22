@@ -1,3 +1,5 @@
+
+
 # Fault-Tolerant Order Processor
 
 This project is a Django-based REST API designed to handle order creation with fault tolerance and idempotency. It simulates a 10% failure rate, supports asynchronous logging, and ensures duplicate orders are processed efficiently using a unique `hash_key`.
@@ -9,11 +11,6 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
 - A 10% random failure simulation returning `503 Service Unavailable` with a 5-second retry header.
 - Asynchronous logging of order attempts.
 - Validation for non-empty `items` and positive `payment_amount`.
-
-## Requirements
-- Docker & Docker Compose
-- Python 3.11 , Django==5.2.7 and PostgreSQL 16 for local run ( Was the tested during implementation)
-
 
 ## Configuration Procedures
 
