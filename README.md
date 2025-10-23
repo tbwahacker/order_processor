@@ -134,7 +134,7 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
 - Ensure `.env.docker` is properly configured with your database credentials and host settings.
 - PostgreSQL is required in production for `IntegrityError` handling to function correctly.
 - Use DEBUG=False and set proper ALLOWED_HOSTS and CORS_ALLOWED_ORIGINS in production
-- I added Token-based authentication and CORS as optional enhancements as per test challenge said
+- I added Token-based authentication and CORS setups as optional enhancements as per test challenge said
 - Windows Wsl, git bash or any Linux//Unix bash will work really well with Curl tool provided in endpoint test above, unless if using windows powershell use:
   ``` bash
      Invoke-WebRequest -Uri http://localhost:8000/orders/ -Method POST -Body '{"items": ["item1", "item2"], "payment_amount": 100.50}' -ContentType "application/json"
