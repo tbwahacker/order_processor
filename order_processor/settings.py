@@ -1,6 +1,10 @@
 import os
+from datetime import timedelta
 from pathlib import Path
+
+from corsheaders.defaults import default_headers
 from dotenv import load_dotenv
+
 # load_dotenv()
 load_dotenv('.env.docker')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +24,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+
+    # Applications
     'orders',
+
+    # Third-parties
     'drf_yasg',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
+]
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=3),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
+}
+
+# CORS Configuration
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '[]')
+if isinstance(CORS_ALLOWED_ORIGINS, str) and ',' in CORS_ALLOWED_ORIGINS:  # comma separated string parsed
+    CORS_ALLOWED_ORIGINS = [origin.strip() for origin in CORS_ALLOWED_ORIGINS.split(',')]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'content-type',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -91,7 +116,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # Logging path (ensure logs dir exists)
 LOGS_DIR = BASE_DIR / "logs"
