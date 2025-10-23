@@ -72,6 +72,12 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
      });
 ```
  - Postman collection tests results included at `docs/OrderProcessor.postman_collection.json`.
+ - To view and test all API endpoints easily:
+    - Open Postman.
+    - Click File → Import.
+    - Select the file docs/OrderProcessor.postman_collection.json. 
+    - Postman will display all available API requests with prefilled data. 
+    - Click Send to test each endpoint — no manual setup needed.
 
 7. **Access the API**
    Test the endpoint at `http://localhost:8000/orders/`:
