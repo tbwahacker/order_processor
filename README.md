@@ -26,7 +26,7 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
    ```
 
 2. **Configure Environment**
-   Ensure `.env.docker` is present with the following variables:
+   Ensure `.env` is present with the following variables:
    - `DB_NAME=orderprocessordb`
    - `DB_USER=your-user`
    - `DB_PASSWORD=your-password`
@@ -38,7 +38,7 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
    - `CORS_ALLOWED_ORIGINS=http://127.0.0.1:8080,http://localhost:8080`
 
 3. **Build and Start Containers**
-   Use Docker Compose with the `.env.docker` file:
+   Use Docker Compose with the `.env` file:
    ```bash
    docker-compose up --build
    ```
@@ -88,7 +88,7 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
 ### Production Environment
 
 1. **Configure Environment**
-   Update `.env.docker` for production:
+   Update `.env` for production:
    - `DB_NAME=orderprocessordb`
    - `DB_USER=your-user`
    - `DB_PASSWORD=your-password`
