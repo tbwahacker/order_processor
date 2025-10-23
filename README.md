@@ -21,7 +21,7 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
 
 1. **Clone the Repository**
    ```bash
-   git https://github.com/tbwahacker/order_processor.git
+   git clone https://github.com/tbwahacker/order_processor.git
    cd order_processor
    ```
 
