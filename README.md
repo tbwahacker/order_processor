@@ -35,6 +35,7 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
    - `DEBUG=True`
    - `SECRET_KEY=your-secret-key-here`
    - `ALLOWED_HOSTS=localhost,127.0.0.1`
+   - `CORS_ALLOWED_ORIGINS=http://127.0.0.1:8080,http://localhost:8080`
 
 3. **Build and Start Containers**
    Use Docker Compose with the `.env.docker` file:
@@ -90,6 +91,7 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
    - `DEBUG=False`
    - `SECRET_KEY=your-production-secret-key-here`
    - `ALLOWED_HOSTS=yourdomain.com`
+   - `CORS_ALLOWED_ORIGINS=your-front-end-domains-separated-in-commas-if-many`
 
 2. **Build Production Containers**
    Build with a production configuration:
@@ -131,6 +133,13 @@ The application features a single endpoint (`/orders/`) that accepts POST reques
 - The `OrderCreateView` handles idempotency by checking `hash_key` before creation and includes an `IntegrityError` fallback for race conditions.
 - Ensure `.env.docker` is properly configured with your database credentials and host settings.
 - PostgreSQL is required in production for `IntegrityError` handling to function correctly.
+- Use DEBUG=False and set proper ALLOWED_HOSTS and CORS_ALLOWED_ORIGINS in production
+- I added Token-based authentication and CORS as optional enhancements as per test challenge said
+- Windows Wsl, git bash or any Linux//Unix bash will work really well with Curl tool provided in endpoint test above, unless if using windows powershell use:
+  ``` bash
+     Invoke-WebRequest -Uri http://localhost:8000/orders/ -Method POST -Body '{"items": ["item1", "item2"], "payment_amount": 100.50}' -ContentType "application/json"
+  ```
+  or use Curl.exe with separated string parameters
 
 ## Assessment Question No. 9 (Why Docker over others?)
 - Docker provides a consistent environment across development, testing, and production.
